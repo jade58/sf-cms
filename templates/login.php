@@ -1,0 +1,1 @@
+<a href="#" class="btn btn-default btn-lg btn-block">Авторизация</a>
