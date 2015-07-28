@@ -20,6 +20,10 @@ require_once 'system/config.php';
        $curent_page = 'guar.php';
       break;
 
+      case 'registration':
+       $curent_page = 'registration.php';
+      break;
+
       default:
       $curent_page = 'news.php';
       break;

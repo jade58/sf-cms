@@ -1,5 +1,6 @@
 <?php
 require_once 'functions.php';
+require_once 'connect.php';
 
 if (!isset($_COOKIE['token']))
 {
@@ -10,7 +11,9 @@ if (!isset($_COOKIE['token']))
 		if (!empty($token))
 		{
 			$user_name = get_name($user_id);
-			setcookie('token', $token, time() + 3600);
+			setcookie('token', $token, time() + 3600*24);
+			setcookie('id', $user_id, time() + 3600*24);
+			setcookie('name', $user_name, time() + 3600*24);
             header("Location: http://".$url.""); //Что бы кукисы обновились
 		}
 	}

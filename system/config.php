@@ -26,11 +26,19 @@ foreach ($db_array as $item){
     }
 }
 
-$vk_api = array('app_id' => '5010567','secret_key' => 'h2fjkJ6po7GAZySAqNO6','ref_url' => $url); //Данные для соеденения с VK api для авторизации
+$vk_api = array('app_id' => '4950576','secret_key' => 'h6iDx3eADczomfZ39209','ref_url' => $url); //Данные для соеденения с VK api для авторизации
 
 $auth_url = 'https://oauth.vk.com/authorize?
 client_id='.$vk_api['app_id'].'
 &scope=1&redirect_uri=http://'.$vk_api['ref_url'].'
-&response_type=code';
+&response_type=code
+&state=1';
+
+$reg_url = 'https://oauth.vk.com/authorize?
+client_id='.$vk_api['app_id'].'
+&scope=1&redirect_uri=http://'.$vk_api['ref_url'].'/index.php?page=registration
+&response_type=code
+&state=1';
+
 
 ?>

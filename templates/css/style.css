@@ -29,6 +29,10 @@ Version:	1.0
 		          1. GLOBAL STYLES
 --------------------------------------------------------------- */
 
+input[type="submit"] {
+border:0px solid #688bb0;
+}
+
 html {
 	overflow-y:scroll;
 }
@@ -90,7 +94,43 @@ a:hover {
 }
 
 .loginbutton{
-  padding-top: 208px;
+  padding-top: 187px;
+  position: relative;
+}
+
+.exit{
+  margin-top: 22px;
+  color: white;
+}
+
+.knopka {
+  color: #2B373B; /* цвет текста */
+  text-decoration: none; /* убирать подчёркивание у ссылок */
+  user-select: none; /* убирать выделение текста */
+  background: rgb(255,213,0); /* фон кнопки */
+  padding: .7em 1.5em; /* отступ от текста */
+  outline: none; /* убирать контур в Mozilla */
+  font-family: inherit;
+  font-size: 12pt;
+} 
+
+input[type="submit"] {
+  color: #2B373B; /* цвет текста */
+  text-decoration: none; /* убирать подчёркивание у ссылок */
+  user-select: none; /* убирать выделение текста */
+  background: rgb(255,213,0); /* фон кнопки */
+  padding: .7em 1.5em; /* отступ от текста */
+  outline: none; /* убирать контур в Mozilla */
+  font-family: inherit;
+  font-size: 12pt;
+}
+
+input[type="submit"]:hover {
+background: rgb(255,255,255); color: #2B373B; /* при наведении курсора мышки */
+}
+
+input[type="submit"]:active {
+background: rgb(255,213,0); /* при наведении курсора мышки */
 }
 
 a.knopka {
@@ -133,7 +173,7 @@ a.knopka:active { background: rgb(255,213,0); } /* при нажатии */
 	height: 140px;
 	position: absolute;
 	top: 0px;
-	bottom: 50px;
+	bottom: 92px;
 	left: 0px;
 	right: 0px;
 	display: table-cell;

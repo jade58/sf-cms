@@ -1,5 +1,6 @@
 <?php
 require_once 'system/auth.php';
+require_once 'system/registration.php';
 ?>
 
 <html> 
@@ -63,9 +64,11 @@ require_once 'system/auth.php';
 						<div class="pic-bg"></div>
 						<div class="loginbutton">
 							<?php if(!isset($_COOKIE['token'])){ ?>
-							  <center><a href="<?php echo $auth_url; ?>" class="knopka">АВТОРИЗАЦИЯ</a></center>
+							  <center><a href="index.php?page=registration" class="knopka">Зарегистрироваться</a></center>
+							  <center><div class="exit"><font size="3pt">Или <a href="<?php echo $auth_url; ?>"><ins>войти</ins></a></font></div></center>
 						    <?php } else {?>
 						      <center><a href="<?php echo $auth_url; ?>" class="knopka">Купить прогнозы</a></center>
+						      <center><div class="exit">Здравствуй, <?php echo $user_name; ?> | <a href="/">Выйти</a></div></center>
 						    <?php } ?>
 						</div>
 					</div>
