@@ -30,9 +30,8 @@ $vk_api = array('app_id' => '4950576','secret_key' => 'h6iDx3eADczomfZ39209','re
 
 $auth_url = 'https://oauth.vk.com/authorize?
 client_id='.$vk_api['app_id'].'
-&scope=1&redirect_uri=http://'.$vk_api['ref_url'].'
-&response_type=code
-&state=1';
+&scope=1&redirect_uri=http://'.$vk_api['ref_url'].'/index.php
+&response_type=code';
 
 $reg_url = 'https://oauth.vk.com/authorize?
 client_id='.$vk_api['app_id'].'

@@ -10,6 +10,7 @@ if ($method == 1){
 	if(!empty($token))
 	{
 		$mysql_check = $db_connect -> getRow("SELECT user_id FROM sf_user WHERE user_id='".($user_id)."'");
+
 		if (count($mysql_check) > 0){
 			$error = 'Вы уже зарегистрированны!';
 		} else {
@@ -20,8 +21,10 @@ if ($method == 1){
 
 			$db_input = $db_connect -> query("INSERT INTO sf_user (user_id, name, user_group, email, login, pass) VALUES ('$user_id','$user_name','1','vk@vk.com','$user_login','$user_pass')");
 
-			if($db_input == 1){
+			if ($db_input == 1){
 				$good_msg = 'Вы успешно зарегистрированны';
+			} else {
+				$good_msg = 'В процессе регистрации возникла ошибка, попробуйте ещё раз!';
 			}
 		}
 	}

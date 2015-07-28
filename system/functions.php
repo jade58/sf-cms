@@ -12,7 +12,7 @@ function get_token($sercet_code)
 	global $vk_api,$user_id;
 	if (!empty($sercet_code))
 	{
-        $api_url = 'https://oauth.vk.com/access_token?client_id='.$vk_api['app_id'].'&client_secret='.$vk_api['secret_key'].'&code='.$sercet_code.'&redirect_uri=http://'.$vk_api['ref_url'].'/index.php?page=registration'; 
+        $api_url = 'https://oauth.vk.com/access_token?client_id='.$vk_api['app_id'].'&client_secret='.$vk_api['secret_key'].'&code='.$sercet_code.'&redirect_uri=http://'.$vk_api['ref_url'].'/index.php'; 
 
         $api_qurey = curl_init();	
 
@@ -25,6 +25,7 @@ function get_token($sercet_code)
         $user_id = $api_array['user_id'];
 
         return $api_array['access_token'];
+
 	}
 }
 
