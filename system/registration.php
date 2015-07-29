@@ -28,5 +28,40 @@ if ($_GET['state'] == 'vk_reg'){
 	}
 }
 
+if ($_GET['state'] == 'login_reg')
+{
+	$user_login = $_POST['login'];
+	$user_pass = $_POST['pass'];
+    $user_mail = $_POST['mail'];
+
+    if ((!empty($user_login)) and (!empty($user_pass)) and (!empty($user_mail)))
+    {
+
+    $mysql_check = $db_connect -> getRow("SELECT login FROM sf_user WHERE login='".($user_login)."'");
+
+    if (count($mysql_check) > 0)
+    {
+    	$l_msg = 'Такой аккаунт уже зарегистрирован!';
+
+    } else {
+			$db_input = $db_connect -> query("INSERT INTO sf_user (user_group, email, login, pass) VALUES ('1','$user_mail ','$user_login','$user_pass')");
+			if ($db_input == 1){
+				$l_msg = 'Вы успешно зарегистрированны! 
+				<br><b>Ваш логин: </b>'.$user_login.'
+				<br><b>Ваш пароль: </b>'.$user_pass.'';
+
+			} else {
+				$l_msg = 'Ошибка, повторите попытку!';
+			}
+    }
+
+    } else {
+    	$l_msg = 'Заполните все поля!';
+    }
+
+header("Location: ",$g_url); //Обнуляем post запрос
+
+}
+
 
 ?>

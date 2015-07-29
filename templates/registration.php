@@ -34,7 +34,7 @@
 									<h3>Регистрация по e-mail</h3>
 									<article>
 										<br>
-										<form method="post" action="index.php?page=registration&method=2">
+										<form method="post" action="index.php?page=registration&state=login_reg">
 											<div class="form-group">
 												<label class="control-label" for="focusedInput">Логин</label>
 												<input class="form-control" name="login" id="focusedInput" type="text">
@@ -50,6 +50,8 @@
 													<br>
 										<center><input class="knopka" type="submit" name="send" value="Зарегистрироваться" ></center>
 										</form>
+										<br>
+										<?php echo $l_msg; ?>
 									</article>
 									<p>Для входа на сайт вам нужно будет использоваться ваш логин и пароль.
 								</div>
