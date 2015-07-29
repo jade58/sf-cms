@@ -7,7 +7,8 @@
 require_once 'lib/safemysql.class.php';
 require_once 'connect.php';
 
-$url = $_SERVER['HTTP_HOST'];
+$s_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'];
+$g_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 
 foreach ($db_array as $item){   
     switch ($item['name']) {
@@ -30,14 +31,15 @@ $vk_api = array('app_id' => '4950576','secret_key' => 'h6iDx3eADczomfZ39209','re
 
 $auth_url = 'https://oauth.vk.com/authorize?
 client_id='.$vk_api['app_id'].'
-&scope=1&redirect_uri=http://'.$vk_api['ref_url'].'/index.php
-&response_type=code';
+&scope=1&redirect_uri='.$s_url.'
+&response_type=code
+&state=auth';
 
 $reg_url = 'https://oauth.vk.com/authorize?
 client_id='.$vk_api['app_id'].'
-&scope=1&redirect_uri=http://'.$vk_api['ref_url'].'/index.php?page=registration
+&scope=1&redirect_uri='.$g_url.'
 &response_type=code
-&state=1';
+&state=vk_reg';
 
 
 ?>

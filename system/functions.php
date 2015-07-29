@@ -7,12 +7,12 @@
 require_once 'config.php';
 
 //Функция получения access token
-function get_token($sercet_code)
+function get_token($sercet_code,$url)
 {
 	global $vk_api,$user_id;
 	if (!empty($sercet_code))
 	{
-        $api_url = 'https://oauth.vk.com/access_token?client_id='.$vk_api['app_id'].'&client_secret='.$vk_api['secret_key'].'&code='.$sercet_code.'&redirect_uri=http://'.$vk_api['ref_url'].'/index.php'; 
+        $api_url = 'https://oauth.vk.com/access_token?client_id='.$vk_api['app_id'].'&client_secret='.$vk_api['secret_key'].'&code='.$sercet_code.'&redirect_uri='.$url.''; 
 
         $api_qurey = curl_init();	
 

@@ -3,10 +3,8 @@ require_once 'functions.php';
 require_once 'connect.php';
 require_once 'lib/safemysql.class.php';
 
-$method = $_GET['state'];
-
-if ($method == 1){
-	$token = get_token($_GET['code']);
+if ($_GET['state'] == 'vk_reg'){
+	$token = get_token($_GET['code'],$g_url);
 	if(!empty($token))
 	{
 		$mysql_check = $db_connect -> getRow("SELECT user_id FROM sf_user WHERE user_id='".($user_id)."'");

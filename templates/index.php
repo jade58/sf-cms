@@ -68,7 +68,7 @@ require_once 'system/registration.php';
 							  <center><div class="exit"><font size="3pt">Или <a href="<?php echo $auth_url; ?>"><ins>войти</ins></a></font></div></center>
 						    <?php } else {?>
 						      <center><a href="<?php echo $auth_url; ?>" class="knopka">Купить прогнозы</a></center>
-						      <center><div class="exit">Здравствуй, <?php echo $user_name; ?> | <a href="/">Выйти</a></div></center>
+						      <center><div class="exit">Здравствуй, <?php echo $_COOKIE['name']; ?> | <a href="/">Выйти</a></div></center>
 						    <?php } ?>
 						</div>
 					</div>
