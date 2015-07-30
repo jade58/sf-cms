@@ -20,8 +20,7 @@
 									<br>
 									<center><a href="<?php echo $reg_url; ?>" class="knopka">Зарегистрироваться</a></center>
 									<br>
-									<p class="text-danger"><center><?php echo $error; ?></center></p>
-									<p class="text-success"><center><?php echo $good_msg; ?></center></p>
+									<p class="text-danger"><center><?php echo $l_msg; ?></center></p>
 									<br>
 								</article>
 								<p>Ваш аккаунт ВКонтакте будет привязан к вашему аккаунту на сайте <?php echo $url; ?>. Войти на сайт вы сможете просто нажатием кнопки "Войти через ВКонтакте".
@@ -51,7 +50,7 @@
 										<center><input class="knopka" type="submit" name="send" value="Зарегистрироваться" ></center>
 										</form>
 										<br>
-										<?php echo $l_msg; ?>
+										<?php echo $r_msg; ?>
 									</article>
 									<p>Для входа на сайт вам нужно будет использоваться ваш логин и пароль.
 								</div>

@@ -10,7 +10,7 @@ if ($_GET['state'] == 'vk_reg'){
 		$mysql_check = $db_connect -> getRow("SELECT user_id FROM sf_user WHERE user_id='".($user_id)."'");
 
 		if (count($mysql_check) > 0){
-			$error = 'Вы уже зарегистрированны!';
+			$l_msg = 'Вы уже зарегистрированны!';
 		} else {
 
 			$user_name = get_name($user_id);
@@ -20,9 +20,9 @@ if ($_GET['state'] == 'vk_reg'){
 			$db_input = $db_connect -> query("INSERT INTO sf_user (user_id, name, user_group, email, login, pass) VALUES ('$user_id','$user_name','1','vk@vk.com','$user_login','$user_pass')");
 
 			if ($db_input == 1){
-				$good_msg = 'Вы успешно зарегистрированны';
+				$l_msg = 'Вы успешно зарегистрированны';
 			} else {
-				$good_msg = 'В процессе регистрации возникла ошибка, попробуйте ещё раз!';
+				$l_msg = 'В процессе регистрации возникла ошибка, попробуйте ещё раз!';
 			}
 		}
 	}
@@ -33,6 +33,7 @@ if ($_GET['state'] == 'login_reg')
 	$user_login = $_POST['login'];
 	$user_pass = $_POST['pass'];
     $user_mail = $_POST['mail'];
+    $md5_pass = md5($user_pass);
 
     if ((!empty($user_login)) and (!empty($user_pass)) and (!empty($user_mail)))
     {
@@ -41,22 +42,22 @@ if ($_GET['state'] == 'login_reg')
 
     if (count($mysql_check) > 0)
     {
-    	$l_msg = 'Такой аккаунт уже зарегистрирован!';
+    	$r_msg = 'Такой аккаунт уже зарегистрирован!';
 
     } else {
-			$db_input = $db_connect -> query("INSERT INTO sf_user (user_group, email, login, pass) VALUES ('1','$user_mail ','$user_login','$user_pass')");
+			$db_input = $db_connect -> query("INSERT INTO sf_user (user_group, email, login, pass) VALUES ('1','$user_mail ','$user_login','$md5_pass')");
 			if ($db_input == 1){
-				$l_msg = 'Вы успешно зарегистрированны! 
+				$r_msg = 'Вы успешно зарегистрированны! 
 				<br><b>Ваш логин: </b>'.$user_login.'
 				<br><b>Ваш пароль: </b>'.$user_pass.'';
 
 			} else {
-				$l_msg = 'Ошибка, повторите попытку!';
+				$r_msg = 'Ошибка, повторите попытку!';
 			}
     }
 
     } else {
-    	$l_msg = 'Заполните все поля!';
+    	$r_msg = 'Заполните все поля!';
     }
 
 header("Location: ",$g_url); //Обнуляем post запрос

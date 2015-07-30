@@ -24,6 +24,10 @@ require_once 'system/config.php';
        $curent_page = 'registration.php';
       break;
 
+      case 'login':
+       $curent_page = 'login.php';
+      break;      
+
       default:
       $curent_page = 'news.php';
       break;

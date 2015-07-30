@@ -25,12 +25,40 @@ if ((isset($_GET['state'])) and (($_GET['state']) == 'auth'))
                     header("Location: ".$s_url.""); //Что бы кукисы обновились
 
             } else {
-            	$error_msg = 'Аккаунт не зарегистрирован!';
+            	$l_msg = 'Аккаунт не зарегистрирован!';
             }
         }
     }
 
   }
 
+} elseif ((isset($_GET['state'])) and ($_GET['state'] == 'login_auth')) {
+	$login = $_POST['login'];
+	$pass = $_POST['pass'];
+
+	if ((!empty($login)) and (!empty($pass)))
+	{
+		$mysql_check = $db_connect -> getRow("SELECT pass FROM sf_user WHERE login='".($login)."'");
+
+		if (count($mysql_check) > 0)
+		{
+			if (md5($pass) == $mysql_check['pass'])
+			{
+				$token = md5(rand());
+			    setcookie('token',$token,time()+3600*24);
+				setcookie('name',$login,time()+3600*24);
+
+				header("Location: ".$s_url.""); //Что бы кукисы обновились
+
+			} else {
+				$r_msg = 'Логин или пароль не верны!';
+			}
+		} else {
+			$r_msg = 'Логин или пароль не верны!';
+		}
+
+	} else {
+		$r_msg = 'Заполните все поля!';
+	}
 }
 ?>
