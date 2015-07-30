@@ -86,6 +86,10 @@ a:hover {
 	padding: 0px;
 }
 
+.bet_text{
+	font-size: 15pt;
+}
+
 .z-content {
 	background: #000;
 	width: 27.7%;
@@ -113,6 +117,34 @@ a:hover {
   font-family: inherit;
   font-size: 12pt;
 } 
+
+.buy_bet {
+  color: #2B373B; /* цвет текста */
+  text-decoration: none; /* убирать подчёркивание у ссылок */
+  user-select: none; /* убирать выделение текста */
+  background: rgb(255,213,0); /* фон кнопки */
+  padding: .7em 1.5em; /* отступ от текста */
+  outline: none; /* убирать контур в Mozilla */
+  font-family: inherit;
+  font-size: 12pt;
+} 
+
+.buy {
+	margin-top: 14px;
+}
+
+a.buy_bet {
+  color: #2B373B; /* цвет текста */
+  text-decoration: none; /* убирать подчёркивание у ссылок */
+  user-select: none; /* убирать выделение текста */
+  background: rgb(255,213,0); /* фон кнопки */
+  padding: .7em 1.5em; /* отступ от текста */
+  outline: none; /* убирать контур в Mozilla */
+  font-family: inherit;
+  font-size: 12pt;
+} 
+a.buy_bet:hover { background: rgb(255,255,255); color: #2B373B; } /* при наведении курсора мышки */
+a.buy_bet:active { background: rgb(255,213,0); } /* при нажатии */
 
 input[type="submit"] {
   color: #2B373B; /* цвет текста */

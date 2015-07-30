@@ -28,6 +28,10 @@ require_once 'system/config.php';
        $curent_page = 'login.php';
       break;      
 
+      case 'lk':
+       $curent_page = 'cabinet.php';
+      break;  
+
       default:
       $curent_page = 'news.php';
       break;
