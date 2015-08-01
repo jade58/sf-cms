@@ -10,19 +10,16 @@
 		</div>
 		<div class="blog-wrap">
 			<div class="row">
-				<div class="col-md-5">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							Прогноз на XX.XX готов, КФ 1.7
-						</div>
+				<div class="col-md-6">
+					<div class="form-group2">
+						<select class="form-control2" id="select">
+							<option>1 прогноз, 500 рублей.</option>
+							<option>3 прогноза, 1200 рублей.</option>
+							<option>4 прогноза, 3200 рублей.</option>
+						</select>
 					</div>
-
 				</div>
-             <div class="buy">
-				<div class="col-md-5">
-					<a href="<?php echo $reg_url; ?>" class="knopka">Приобрести прогноз</a>
-				</div>
-			</div>
+				<div class="col-md-5"><a href="<?php echo $reg_url; ?>" class="knopka">Приобрести прогнозы</a></div>
 			</div>
 			<br>
 			<br>
