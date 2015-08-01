@@ -84,7 +84,13 @@ require_once 'system/registration.php';
 				<div class="col-md-9 r-content">
 					<div class="flexslider">
 						<div class="slides">
-							<?php include 'templates/'.$curent_page; ?>
+							<?php 
+							if (empty($page_content)){
+								include 'templates/'.$curent_page;
+							} else {
+								echo $page_content;
+							}
+							?>
 						</div>
 					</div>
 

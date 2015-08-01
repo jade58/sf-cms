@@ -2,8 +2,10 @@
 
 require_once 'system/config.php';
 
-  if (isset($_GET['page'])){
-    switch ($_GET['page']) {
+  if (isset($_GET['page']))
+  {
+    switch ($_GET['page']) 
+    {
       case 'main':
        $curent_page = 'news.php';
       break;
@@ -36,9 +38,17 @@ require_once 'system/config.php';
       $curent_page = 'news.php';
       break;
     }
+
   } else {
       $curent_page = 'news.php';
   }
+
+    $mysql_check = $db_connect -> getRow("SELECT url FROM sf_page WHERE url='".($_GET['page'])."'");
+    if ($mysql_check > 0)
+    {
+      $get_content = $db_connect -> getRow("SELECT content FROM sf_page WHERE url='".($_GET['page'])."'");
+      $page_content = $get_content['content'];
+    }
 
   include 'templates/index.php';
 ?>

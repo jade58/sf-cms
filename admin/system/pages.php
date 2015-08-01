@@ -14,6 +14,12 @@ if (isset($_GET['page']))
 		case 'materials':
 			//include 'templates/materials.php';
 			break;
+		case 'edit':
+			$page = 'templates/editpage.php';
+			break;
+		case 'addpage':
+			$page = 'templates/addpage.php';
+			break;
 		
 		default:
 			include 'templates/main.php';

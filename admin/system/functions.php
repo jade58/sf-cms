@@ -8,4 +8,43 @@ function get_users()
 	return $response_array;
 }
 
+function main_update($wtext,$des,$other)
+{
+	global $db_array,$db_connect,$g_url; //db_array -- Массив с данными из таблицы sf_config
+
+	foreach ($db_array as $row) 
+	{
+		switch ($row['name']) 
+		{
+			case 'welcome_text':
+				$current_wtext = $row['value'];
+				break;
+			case 'description':
+				$current_des = $row['value'];
+				break;
+			
+		}
+	}
+
+	if ($wtext != $current_wtext)
+	{
+		$update = $db_connect -> query("UPDATE bc_config SET value = '$wtext' WHERE name='welcome_text'");
+	}
+
+	if ($des != $current_des)
+	{
+		$update = $db_connect -> query("UPDATE bc_config SET value = '$des' WHERE name='description'");
+	}
+
+	header("Location: ".$g_url.""); //Обновляем страницу
+
+}
+
+function page_create($name,$url,$content)
+{
+	global $db_connect;
+
+	$db_query = $db_connect -> query("INSERT INTO sf_page (name, content, creator, datecreate, url) VALUES ('$name','$content','admin','21.01.15','$url')");
+}
+
 ?>

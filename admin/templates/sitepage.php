@@ -2,7 +2,7 @@
     <h3><p>Управление страницами сайта</p></h3>
   <div class="well">
     <ul class="nav nav-pills">
-      <li class="active"><a href="#">+ Добавить страницу</a></li>
+      <li class="active"><a href="index.php?page=addpage">+ Добавить страницу</a></li>
     </ul>
   </div>
 </div>
@@ -25,28 +25,28 @@
           <td>root</td>
           <td>/</td>
           <td>00.00.00</td>
-          <td>Редактировать</td>
+          <td><a href="index.php?page=edit&items=main">Редактировать</td>
         </tr>
         <tr class="info">
           <td>Скриншоты</td>
           <td>root</td>
           <td>/</td>
           <td>00.00.00</td>
-          <td>Редактировать</td>
+          <td><a href="index.php?page=edit&items=scr">Редактировать</td>
         </tr>
         <tr class="info">
           <td>Личный кабинет</td>
           <td>root</td>
           <td>/</td>
           <td>00.00.00</td>
-          <td>Редактировать</td>
+          <td><a href="index.php?page=edit&items=lk">Редактировать</td>
         </tr>
         <tr class="info">
           <td>Гарантии</td>
           <td>root</td>
           <td>/</td>
           <td>00.00.00</td>
-          <td>Редактировать</td>
+          <td><a href="index.php?page=edit&items=guar">Редактировать</td>
         </tr>
         <tr class="success">
           <td>Информация о нас</td>
