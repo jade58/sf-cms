@@ -48,6 +48,7 @@ require_once 'system/config.php';
     {
       $get_content = $db_connect -> getRow("SELECT content FROM sf_page WHERE url='".($_GET['page'])."'");
       $page_content = $get_content['content'];
+      $curent_page = 'static.php';
     }
 
   include 'templates/index.php';
