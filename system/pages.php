@@ -46,8 +46,10 @@ require_once 'system/config.php';
     $mysql_check = $db_connect -> getRow("SELECT url FROM sf_page WHERE url='".($_GET['page'])."'");
     if ($mysql_check > 0)
     {
-      $get_content = $db_connect -> getRow("SELECT content FROM sf_page WHERE url='".($_GET['page'])."'");
+      $get_content = $db_connect -> getRow("SELECT content,name FROM sf_page WHERE url='".($_GET['page'])."'");
       $page_content = $get_content['content'];
+      $page_name = $get_content['name'];
+      
       $curent_page = 'static.php';
     }
 

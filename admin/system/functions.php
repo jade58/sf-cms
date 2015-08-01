@@ -8,6 +8,14 @@ function get_users()
 	return $response_array;
 }
 
+function get_pages()
+{
+	global $db_connect;
+
+	$response_array = $db_connect->getAll("SELECT name,id,creator,datecreate,url FROM sf_page");
+	return $response_array;
+}
+
 function main_update($wtext,$des,$other)
 {
 	global $db_array,$db_connect,$g_url; //db_array -- Массив с данными из таблицы sf_config

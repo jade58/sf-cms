@@ -48,12 +48,15 @@
           <td>00.00.00</td>
           <td><a href="index.php?page=edit&items=guar">Редактировать</td>
         </tr>
+        <?php $pages_list = get_pages(); ?>
+        <?php foreach ($pages_list as $row) { ?>
         <tr class="success">
-          <td>Информация о нас</td>
-          <td>admin</td>
-          <td>o-nas</td>
-          <td>31.07.15</td>
+          <td><?php echo $row['name']; ?></td>
+          <td><?php echo $row['creator']; ?></td>
+          <td>index.php?page=<?php echo $row['url']; ?></td>
+          <td><?php echo $row['datecreate']; ?></td>
           <td>Редактировать / Удалить</td>
+        <?php } ?>
         </tr>
       </tbody>
     </table> 
