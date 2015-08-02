@@ -16,6 +16,15 @@ function get_pages()
 	return $response_array;
 }
 
+function get_page_info($id)
+{
+	global $db_connect;
+
+	$response_array = $db_connect->getAll("SELECT name,id,creator,datecreate,url,content FROM sf_page WHERE id='$id'");
+	return $response_array[0];
+}
+
+
 function main_update($wtext,$des,$other)
 {
 	global $db_array,$db_connect,$g_url; //db_array -- Массив с данными из таблицы sf_config

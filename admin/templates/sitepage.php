@@ -12,6 +12,7 @@
     <table class="table table-striped table-hover ">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Заголовок</th>
           <th>Создатель</th>
           <th>URL</th>
@@ -21,6 +22,7 @@
       </thead>
       <tbody>
         <tr class="info">
+          <td>0</td>
           <td>Главная</td>
           <td>root</td>
           <td>/</td>
@@ -28,6 +30,7 @@
           <td><a href="index.php?page=edit&items=main">Редактировать</td>
         </tr>
         <tr class="info">
+          <td>0</td>
           <td>Скриншоты</td>
           <td>root</td>
           <td>/</td>
@@ -35,6 +38,7 @@
           <td><a href="index.php?page=edit&items=scr">Редактировать</td>
         </tr>
         <tr class="info">
+          <td>0</td>
           <td>Личный кабинет</td>
           <td>root</td>
           <td>/</td>
@@ -42,6 +46,7 @@
           <td><a href="index.php?page=edit&items=lk">Редактировать</td>
         </tr>
         <tr class="info">
+          <td>0</td>
           <td>Гарантии</td>
           <td>root</td>
           <td>/</td>
@@ -51,11 +56,12 @@
         <?php $pages_list = get_pages(); ?>
         <?php foreach ($pages_list as $row) { ?>
         <tr class="success">
+          <td><?php echo $row['id']; ?></td>
           <td><?php echo $row['name']; ?></td>
           <td><?php echo $row['creator']; ?></td>
-          <td>index.php?page=<?php echo $row['url']; ?></td>
+          <td><a href="/index.php?page=<?php echo $row['url']; ?>">index.php?page=<?php echo $row['url']; ?></a></td>
           <td><?php echo $row['datecreate']; ?></td>
-          <td>Редактировать / Удалить</td>
+          <td><a href="index.php?page=edit&items=<?php echo $row['id']; ?>">Редактировать</a> / Удалить</td>
         <?php } ?>
         </tr>
       </tbody>

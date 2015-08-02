@@ -7,7 +7,7 @@ if (isset($_GET['page']))
 			break;
 		
 		default:
-			# code...
+			$edit_page = 'templates/sub_page/staticform.php';
 			break;
 	}
 }
