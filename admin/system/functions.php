@@ -1,5 +1,6 @@
 <?
 
+//функция для получения массива пользователей сайта
 function get_users()
 {
 	global $db_connect;
@@ -8,6 +9,7 @@ function get_users()
 	return $response_array;
 }
 
+//Функция для получения массива с информацией о всех страницах сайта
 function get_pages()
 {
 	global $db_connect;
@@ -16,6 +18,7 @@ function get_pages()
 	return $response_array;
 }
 
+//Функция для получения массива с информацией об определённой странице сайта ($id)
 function get_page_info($id)
 {
 	global $db_connect;
@@ -24,10 +27,10 @@ function get_page_info($id)
 	return $response_array[0];
 }
 
-
+//Функция при помощи которой обновляется информация выводимая на главной странице сайта.
 function main_update($wtext,$des,$other)
 {
-	global $db_array,$db_connect,$g_url; //db_array -- Массив с данными из таблицы sf_config
+	global $db_array,$db_connect,$g_url,$msg; //db_array -- Массив с данными из таблицы sf_config
 
 	foreach ($db_array as $row) 
 	{
@@ -53,15 +56,27 @@ function main_update($wtext,$des,$other)
 		$update = $db_connect -> query("UPDATE bc_config SET value = '$des' WHERE name='description'");
 	}
 
+	if ($update == 1)
+	{
+		$msg = 'Новые данные были успешны сохранены!';
+	} else {
+		$msg = 'Ошибка';
+	}
+
 	header("Location: ".$g_url.""); //Обновляем страницу
 
 }
 
+//Функция для создания страниц сайта
 function page_create($name,$url,$content)
 {
 	global $db_connect;
 
 	$db_query = $db_connect -> query("INSERT INTO sf_page (name, content, creator, datecreate, url) VALUES ('$name','$content','admin','21.01.15','$url')");
+	if ($db_query > 0)
+	{
+		header("Location: ".$g_url.""); //Обновляем страницу
+	}
 }
 
 ?>

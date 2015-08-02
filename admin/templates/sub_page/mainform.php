@@ -32,6 +32,7 @@ if (isset($_POST['send']))
 		<div class="form-group">
 			<div class="col-lg-10 col-lg-offset-2">
 				<input type="submit" class="btn btn-primary" name="send" value="Применить">
+			<?php echo $msg; ?>
 			</div>
 		</div>
 	</fieldset>
