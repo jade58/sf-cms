@@ -61,6 +61,7 @@ if ($_GET['state'] == 'login_reg')
     }
 
 header("Location: ",$g_url); //Обнуляем post запрос
+exit();
 
 }
 

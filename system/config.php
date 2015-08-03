@@ -10,6 +10,7 @@ require_once 'connect.php';
 $s_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'];
 $g_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 
+
 foreach ($db_array as $item){   
     switch ($item['name']) {
 
@@ -23,7 +24,11 @@ foreach ($db_array as $item){
 
     	case 'welcome_text':
     	    $welcome_text = $item['value']; //Приветственный текст
-    	    break;	
+    	    break;
+
+        case 'scrtext':
+            $scr_text = $item['value']; //Текст на странице скриншотов
+            break;
     }
 }
 

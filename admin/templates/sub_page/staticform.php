@@ -3,6 +3,7 @@ $page_info = get_page_info($_GET['items']);
 ?>
 <form class="form-horizontal" method="post">
 	<fieldset>
+
 		<legend><?php echo $page_info['name']; ?> - редактирование</legend>
 		<div class="form-group">
 			<label for="inputEmail" class="col-lg-2 control-label">Название</label>

@@ -3,8 +3,8 @@
 	<div class="works" id="2">
 		<div class="page-head">
 			<div class="row">
-				<div class="col-md-5">
-					<h3>Наши ставки</h3>
+				<div class="col-md-7">
+					<h3><?php echo $scr_text; ?></h3>
 				</div>
 			</div>
 		</div>
