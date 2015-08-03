@@ -84,6 +84,15 @@ function page_action($name,$url,$content,$method,$id)
 		header("Location: ".$upd_url.""); //Обновляем страницу
 	    exit();
     }
+
+    if ($method == 'edit')
+    {
+    	$db_query = $db_connect -> query("UPDATE sf_page SET name = '$name',content = '$content',url = '$url' WHERE id='$id'");
+
+    	$upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items='.$id.'';	
+		header("Location: ".$upd_url.""); //Обновляем страницу
+	    exit();
+    }
 }
 
 function msg_handler($msg_id)

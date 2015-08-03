@@ -1,5 +1,9 @@
 <?php
 $page_info = page_action('null','null','null','info',$_GET['items']);
+if (isset($_POST['send']))
+{
+	page_action($_POST['page_name'],$_POST['url'],$_POST['content'],'edit',$_GET['items']);
+}
 ?>
 <form class="form-horizontal" method="post">
 	<fieldset>

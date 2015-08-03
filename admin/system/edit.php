@@ -14,6 +14,9 @@ if (isset($_GET['page']))
         case 'guaredit':
 		    $edit_page = 'templates/sub_page/guaredit_form.php';
 			break;
+        case 'static':
+		    $edit_page = 'templates/sub_page/guaredit_form.php';
+			break;
 		
 		default:
 			$edit_page = 'templates/sub_page/staticform.php';
