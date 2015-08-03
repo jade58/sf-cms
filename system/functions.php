@@ -76,4 +76,13 @@ function get_password($number)
     return $pass;
   }
 
+  function get_guar()
+  {
+    global $db_connect;
+
+    $guar_arr = $db_connect -> getAll("SELECT * FROM sf_guar");
+    return $guar_arr;
+
+  }
+
 ?>

@@ -76,7 +76,6 @@ require_once 'system/registration.php';
 						<ul class="navigation">
 							<li><a href="index.php?page=main">Главная</a></li>
 							<li><a href="index.php?page=bet">Статистика</a></li>
-							<li><a href="index.php?page=answer">Частые вопросы</a></li>
 							<li><a href="index.php?page=guar">Гарантии</a></li>
 						</ul>
 					</nav>

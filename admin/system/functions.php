@@ -9,24 +9,6 @@ function get_users()
 	return $response_array;
 }
 
-//Функция для получения массива с информацией о всех страницах сайта
-function get_pages()
-{
-	global $db_connect;
-
-	$response_array = $db_connect->getAll("SELECT name,id,creator,datecreate,url FROM sf_page");
-	return $response_array;
-}
-
-//Функция для получения массива с информацией об определённой странице сайта ($id)
-function get_page_info($id)
-{
-	global $db_connect;
-
-	$response_array = $db_connect->getAll("SELECT name,id,creator,datecreate,url,content FROM sf_page WHERE id='$id'");
-	return $response_array[0];
-}
-
 //Функция при помощи которой обновляется информация выводимая на главной странице сайта.
 function main_update($wtext,$des,$other)
 {
@@ -59,24 +41,49 @@ function scr_update($page_name)
 		exit();
 }
 
-//Функция для создания страниц сайта
-function page_create($name,$url,$content)
+//Функция для работы со страницами сайта
+function page_action($name,$url,$content,$method,$id)
 {
 	global $db_connect;
 
-	$db_query = $db_connect -> query("INSERT INTO sf_page (name, content, creator, datecreate, url) VALUES ('$name','$content','admin','21.01.15','$url')");
-	if ($db_query > 0)
-	{
-		$get_id = $db_connect ->getAll("SELECT id FROM sf_page WHERE url='$url'");
+    if ($method == 'create')
+    {
+          $db_query = $db_connect -> query("INSERT INTO sf_page (name, content, creator, datecreate, url) VALUES ('$name','$content','admin','21.01.15','$url')");
+	      if ($db_query > 0)
+	   {
+		   $get_id = $db_connect ->getAll("SELECT id FROM sf_page WHERE url='$url'");
 
-		foreach ($get_id as $row) {
-			$id = $row['id'];
-		}
+		   foreach ($get_id as $row) 
+		   {
+			   $id = $row['id'];
+		   }
 
-		$upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items='.$id.'&msg=3';
-	    header("Location: ".$upd_url.""); //Обновляем страницу
+		   $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items='.$id.'&msg=3';
+	       header("Location: ".$upd_url.""); //Обновляем страницу
+	       exit();
+	   }
+    }
+
+    if ($method == 'list') //Get page list (array)
+    {
+	   $response_array = $db_connect->getAll("SELECT name,id,creator,datecreate,url FROM sf_page");
+	   return $response_array;
+    }
+
+    if ($method == 'info') //GET Info (array)
+    {
+	   $response_array = $db_connect->getAll("SELECT name,id,creator,datecreate,url,content FROM sf_page WHERE id='$id'");
+	   return $response_array[0];
+    }
+
+    if ($method == 'del') //Delete
+    {
+        $db_query = $db_connect -> query("DELETE FROM sf_page WHERE id='$id'");
+
+	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=sitepage';	
+		header("Location: ".$upd_url.""); //Обновляем страницу
 	    exit();
-	}
+    }
 }
 
 function msg_handler($msg_id)

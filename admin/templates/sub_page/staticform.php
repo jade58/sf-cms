@@ -1,5 +1,5 @@
 <?php
-$page_info = get_page_info($_GET['items']);
+$page_info = page_action('null','null','null','info',$_GET['items']);
 ?>
 <form class="form-horizontal" method="post">
 	<fieldset>

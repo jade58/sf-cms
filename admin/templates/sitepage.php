@@ -1,3 +1,9 @@
+<?php
+if (isset($_GET['method']))
+{
+  page_action('null','null','null','del',$_GET['items']);
+}
+?>
 <div class="col-md-9">
     <h3><p>Управление страницами сайта</p></h3>
   <div class="well">
@@ -45,7 +51,7 @@
           <td>00.00.00</td>
           <td><a href="index.php?page=edit&items=guar">Редактировать</td>
         </tr>
-        <?php $pages_list = get_pages(); ?>
+        <?php $pages_list = page_action('null','null','null','list','null'); ?>
         <?php foreach ($pages_list as $row) { ?>
         <tr class="success">
           <td><?php echo $row['id']; ?></td>
@@ -53,7 +59,7 @@
           <td><?php echo $row['creator']; ?></td>
           <td><a href="/index.php?page=<?php echo $row['url']; ?>">index.php?page=<?php echo $row['url']; ?></a></td>
           <td><?php echo $row['datecreate']; ?></td>
-          <td><a href="index.php?page=edit&items=<?php echo $row['id']; ?>">Редактировать</a> / Удалить</td>
+          <td><a href="index.php?page=edit&items=<?php echo $row['id']; ?>">Редактировать</a> / <a href="index.php?page=sitepage&method=del&items=<?php echo $row['id']; ?>">Удалить</td>
         <?php } ?>
         </tr>
       </tbody>
