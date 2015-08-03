@@ -112,15 +112,37 @@ function get_guar($id)
     }
 }
 
-function add_guar($content)
+function guar_proc($content,$method,$id)
 {
 	global $db_connect;
 
-	$db_query = $db_connect -> query("INSERT INTO sf_guar (guar) VALUES ('$content')");
+    if ($method == 'add')
+    {
+    	$db_query = $db_connect -> query("INSERT INTO sf_guar (guar) VALUES ('$content')");
 
 	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items=guar';	
 		header("Location: ".$upd_url.""); //Обновляем страницу
 	    exit();
+
+    } 
+
+    if ($method == 'upd') 
+    {
+    	$db_query = $db_connect -> query("UPDATE sf_guar SET guar = '$content' WHERE id='$id'");
+
+	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'].'';	
+		header("Location: ".$upd_url.""); //Обновляем страницу
+	    exit();
+    }
+
+    if ($method == 'del')
+    {
+    	$db_query = $db_connect -> query("DELETE FROM sf_guar WHERE id='$id'");
+
+	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items=guar';	
+		header("Location: ".$upd_url.""); //Обновляем страницу
+	    exit();
+    }
 }
 
 ?>

@@ -5,7 +5,7 @@ if (isset($_POST['send']))
 	{
 		$content = $_POST['content'];
 
-		add_guar($content); //Добавляем гарантию
+		guar_proc($content,'add','null'); //Добавляем гарантию
 	}
 }
 ?>

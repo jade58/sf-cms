@@ -1,3 +1,9 @@
+<?php
+if (isset($_GET['method']))
+{
+  guar_proc('null',$_GET['method'],$_GET['id']);
+}
+?>
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -12,7 +18,7 @@
     <tr class="info">
       <td><?php echo $row['id']; ?></td>
       <td><?php echo $row['guar']; ?></td>
-      <td>Удалить / <a href="index.php?page=edit&items=guaredit&id=<?php echo $row['id']; ?>">Редакитровать</td>
+      <td><a href="index.php?page=edit&items=guar&method=del&id=<?php echo $row['id']; ?>">Удалить / <a href="index.php?page=edit&items=guaredit&id=<?php echo $row['id']; ?>">Редакитровать</td>
     </tr>
     <?php } ?>
   </tbody>

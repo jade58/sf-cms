@@ -8,7 +8,7 @@ if (isset($_POST['send']))
 	{
 		$content = $_POST['content'];
 
-		update_guar($content); //Добавляем гарантию
+		guar_proc($content,'upd',$_GET['id']); //Сохраняем гарантию
 	}
 }
 
