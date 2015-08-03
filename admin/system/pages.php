@@ -20,6 +20,9 @@ if (isset($_GET['page']))
 		case 'addpage':
 			$page = 'templates/addpage.php';
 			break;
+		case 'addguar':
+			$page = 'templates/addguar.php';
+			break;
 		
 		default:
 			include 'templates/main.php';

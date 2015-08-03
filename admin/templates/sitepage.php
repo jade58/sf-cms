@@ -39,14 +39,6 @@
         </tr>
         <tr class="info">
           <td>0</td>
-          <td>Личный кабинет</td>
-          <td>root</td>
-          <td>/</td>
-          <td>00.00.00</td>
-          <td><a href="index.php?page=edit&items=lk">Редактировать</td>
-        </tr>
-        <tr class="info">
-          <td>0</td>
           <td>Гарантии</td>
           <td>root</td>
           <td>/</td>
