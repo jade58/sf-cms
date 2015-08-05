@@ -442,6 +442,11 @@ a.knopka:active { background: rgb(255,213,0); } /* при нажатии */
 	background: #fff;
 }
 
+.upsend{
+	bottom: 11px;
+	position: relative;
+}
+
 .portfolio-wrap {
 	padding: 0 5px;
 }
