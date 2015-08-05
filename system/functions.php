@@ -85,4 +85,15 @@ function get_password($number)
 
   }
 
+  function get_shop_items()
+  {
+    
+    global $db_connect;
+
+    $price_array = $db_connect -> getAll("SELECT * FROM sf_price");
+
+    return $price_array;
+
+  }
+
 ?>

@@ -33,7 +33,7 @@ if (isset($_GET['method']))
           <td>root</td>
           <td>/</td>
           <td>00.00.00</td>
-          <td><a href="index.php?page=edit&items=main">Редактировать</td>
+          <td><a href="index.php?page=edit&type=page&items=main">Редактировать</td>
         </tr>
         <tr class="info">
           <td>0</td>
@@ -41,7 +41,7 @@ if (isset($_GET['method']))
           <td>root</td>
           <td>/</td>
           <td>00.00.00</td>
-          <td><a href="index.php?page=edit&items=scr">Редактировать</td>
+          <td><a href="index.php?page=edit&type=page&items=scr">Редактировать</td>
         </tr>
         <tr class="info">
           <td>0</td>
@@ -49,7 +49,7 @@ if (isset($_GET['method']))
           <td>root</td>
           <td>/</td>
           <td>00.00.00</td>
-          <td><a href="index.php?page=edit&items=guar">Редактировать</td>
+          <td><a href="index.php?page=edit&type=page&items=guar">Редактировать</td>
         </tr>
         <?php $pages_list = page_action('null','null','null','list','null'); ?>
         <?php foreach ($pages_list as $row) { ?>
@@ -59,7 +59,7 @@ if (isset($_GET['method']))
           <td><?php echo $row['creator']; ?></td>
           <td><a href="/index.php?page=<?php echo $row['url']; ?>">index.php?page=<?php echo $row['url']; ?></a></td>
           <td><?php echo $row['datecreate']; ?></td>
-          <td><a href="index.php?page=edit&items=<?php echo $row['id']; ?>">Редактировать</a> / <a href="index.php?page=sitepage&method=del&items=<?php echo $row['id']; ?>">Удалить</td>
+          <td><a href="index.php?page=edit&type=page&items=<?php echo $row['id']; ?>">Редактировать</a> / <a href="index.php?page=sitepage&method=del&items=<?php echo $row['id']; ?>">Удалить</td>
         <?php } ?>
         </tr>
       </tbody>

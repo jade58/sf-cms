@@ -1,7 +1,11 @@
 <?php
 if (isset($_GET['page']))
 {
-	switch ($_GET['items']) {
+	if ($_GET['type'] == 'page')
+	{
+
+	  switch ($_GET['items']) 
+	  {
 		case 'main':
 		    $edit_page = 'templates/sub_page/mainform.php';
 			break;
@@ -21,6 +25,14 @@ if (isset($_GET['page']))
 		default:
 			$edit_page = 'templates/sub_page/staticform.php';
 			break;
-	}
+
+	  }
+
+    }
+
+    if ($_GET['type'] == 'plan')
+    {
+    	$edit_page = 'templates/sub_page/planform.php';
+    }
 }
 ?>

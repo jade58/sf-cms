@@ -1,3 +1,6 @@
+<?php 
+echo $_POST['value'];
+?>
 <!-- SECTION 4 - BLOG / NEWS -->
 <section class="display">
 	<div class="item blog" id="4">
@@ -11,15 +14,19 @@
 		<div class="blog-wrap">
 			<div class="row">
 				<div class="col-md-6">
-					<div class="form-group2">
-						<select class="form-control2" id="select">
-							<option>1 прогноз, 500 рублей.</option>
-							<option>3 прогноза, 1200 рублей.</option>
-							<option>4 прогноза, 3200 рублей.</option>
-						</select>
+					<form method="post">
+						<div class="form-group2">
+							<select class="form-control2" id="select" name="value">
+								<?php foreach (get_shop_items() as $row) { ?>
+								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
 					</div>
-				</div>
-				<div class="col-md-5"><a href="<?php echo $reg_url; ?>" class="knopka">Приобрести прогнозы</a></div>
+					<div class="upsend">
+						<div class="col-md-5"><input type="submit" class="knopka" value="Приобрести прогноз"></div>
+					</div>
+				</form>
 			</div>
 			<br>
 			<br>

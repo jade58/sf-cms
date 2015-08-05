@@ -9,7 +9,7 @@ if (isset($_GET['page']))
 			$page = 'templates/sitepage.php';
 			break;
 		case 'commerce':
-			//include 'templates/commerce.php';
+			$page = 'templates/commerce.php';
 			break;
 		case 'materials':
 			//include 'templates/materials.php';
@@ -20,17 +20,21 @@ if (isset($_GET['page']))
 		case 'addpage':
 			$page = 'templates/addpage.php';
 			break;
+		case 'addplan':
+			$page = 'templates/addplan.php';
+			break;
 		case 'addguar':
 			$page = 'templates/addguar.php';
 			break;
 		
 		default:
-			include 'templates/main.php';
+			$page = 'templates/main.php';
 			break;
 	}
 } else {
-			include 'templates/main.php';
+			$page = 'templates/main.php';
 }
 
 include 'templates/index.php';
+
 ?>

@@ -18,13 +18,13 @@ function main_update($wtext,$des,$other)
 
 	if ($update == 1)
 	{
-		$upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items=main&msg=1';
+		$upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&type=page&items=main&msg=1';
 		header("Location: ".$upd_url.""); //Обновляем страницу
 		exit();
 		
 	} else 
 	{
-		$upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items=main&msg=2';
+		$upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&type=page&items=main&msg=2';
 		header("Location: ".$upd_url.""); //Обновляем страницу
 		exit();
 	}
@@ -46,23 +46,41 @@ function page_action($name,$url,$content,$method,$id)
 {
 	global $db_connect;
 
-    if ($method == 'create')
-    {
-          $db_query = $db_connect -> query("INSERT INTO sf_page (name, content, creator, datecreate, url) VALUES ('$name','$content','admin','21.01.15','$url')");
-	      if ($db_query > 0)
-	   {
-		   $get_id = $db_connect ->getAll("SELECT id FROM sf_page WHERE url='$url'");
+	if ($method == 'create')
+	{     
+		$chek_page = $db_connect->getAll("SELECT id FROM sf_page WHERE url='$url'");
+		print_r($chek_page);
 
-		   foreach ($get_id as $row) 
-		   {
-			   $id = $row['id'];
-		   }
+		if (count($chek_page[0]) == 0)
+		{
+			$db_query = $db_connect -> query("INSERT INTO sf_page (name, content, creator, datecreate, url) VALUES ('$name','$content','admin','21.01.15','$url')");
+			if ($db_query > 0)
+			{
+				$get_id = $db_connect ->getAll("SELECT id FROM sf_page WHERE url='$url'");
 
-		   $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items='.$id.'&msg=3';
+				foreach ($get_id as $row) 
+				{
+					$id = $row['id'];
+				}
+
+		   $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&type=page&items='.$id.'&msg=3';
+	       
 	       header("Location: ".$upd_url.""); //Обновляем страницу
 	       exit();
-	   }
-    }
+
+	        } 
+
+	    } else {
+
+	      	$msg_code = 100; //Такая страница уже есть!
+
+		    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=addpage&msg='.$msg_code.'';
+	        
+	        header("Location: ".$upd_url.""); //Обновляем страницу
+	        exit();
+	}
+
+}
 
     if ($method == 'list') //Get page list (array)
     {
@@ -89,28 +107,55 @@ function page_action($name,$url,$content,$method,$id)
     {
     	$db_query = $db_connect -> query("UPDATE sf_page SET name = '$name',content = '$content',url = '$url' WHERE id='$id'");
 
-    	$upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items='.$id.'';	
-		header("Location: ".$upd_url.""); //Обновляем страницу
-	    exit();
+        if ($db_query == 1)
+        {
+           $msg_code = 110;
+           $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&type=page&items='.$id.'&msg='.$msg_code.'';	
+		   header("Location: ".$upd_url.""); //Обновляем страницу
+	       exit();
+        }
     }
 }
 
 function msg_handler($msg_id)
 {
+	switch ($msg_id) {
+		case 1:
+			return 'Данные успешно обновленны!';
+			break;
 
-	if ($msg_id == 1)
-	{
-		return 'Данные успешно обновленны!';
-	}
+		case 2:
+			return 'Ошибка';
+			break;
 
-	if ($msg_id == 2)
-	{
-		return 'Ошибка';
-	}
+		case 3:
+			return 'Страница была успешно созданна!';
+			break;
 
-	if ($msg_id == 3)
-	{
-		return 'Страница была успешно созданна!';
+		case 100:
+			return 'Такая страница уже существует!';
+			break;
+
+		case 110:
+			return 'Успешно!';
+			break;
+
+		case 200:
+			return 'Заполните все поля!';
+			break;
+
+		case 210:
+			return 'Тариф успешно добавлен!';
+			break;
+
+		case 212:
+			return 'Тариф успешно обновлён!';
+			break;
+
+		case 202:
+			return 'Все поля должны быть заполенны!';
+			break;
+	
 	}
 }
 
@@ -136,7 +181,7 @@ function guar_proc($content,$method,$id)
     {
     	$db_query = $db_connect -> query("INSERT INTO sf_guar (guar) VALUES ('$content')");
 
-	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items=guar';	
+	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&type=page&items=guar';	
 		header("Location: ".$upd_url.""); //Обновляем страницу
 	    exit();
 
@@ -155,10 +200,73 @@ function guar_proc($content,$method,$id)
     {
     	$db_query = $db_connect -> query("DELETE FROM sf_guar WHERE id='$id'");
 
-	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items=guar';	
+	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&type=page&items=guar';	
 		header("Location: ".$upd_url.""); //Обновляем страницу
 	    exit();
     }
+}
+
+function price_action($method, $name, $price, $number, $id)
+{
+	global $db_connect;
+
+	if ($method == 'add')
+	{
+		if (!empty($name) && !empty($price) && !empty($number))
+		{
+
+			$db_query = $db_connect -> query("INSERT INTO sf_price (name, price, num_b) VALUES ('$name','$price','$number')");
+			if ($db_query > 0)
+			{
+				$msg_code = 210;
+	              $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items='.$id.'&type=plan&msg='.$msg_code.'';	
+		          header("Location: ".$upd_url.""); //Обновляем страницу
+	              exit();				
+            }
+
+		} else {
+		   $msg_code = 200;
+
+	         $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=addplan&msg='.$msg_code.'';	
+		     header("Location: ".$upd_url.""); //Обновляем страницу
+	         exit();
+		}
+	}
+
+	if ($method == 'get')
+	{
+		$price_array = $db_connect -> getAll("SELECT * FROM sf_price");
+		return $price_array;
+	}
+
+	if ($method == 'getinfo')
+	{
+		$price_array = $db_connect -> getAll("SELECT * FROM sf_price WHERE id='$id'");
+		return $price_array[0];
+	}
+
+	if ($method == 'update')
+	{
+		if (!empty($name) && !empty($price) && !empty($number))
+		{
+
+			$db_query = $db_connect -> query("UPDATE sf_price SET name = '$name',price = '$price',num_b = '$number' WHERE id='$id'");
+			if ($db_query > 0)
+			{
+				$msg_code = 212;
+	              $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&items='.$id.'&type=plan&msg='.$msg_code.'';	
+		          header("Location: ".$upd_url.""); //Обновляем страницу
+	              exit();				
+            }
+
+		} else {
+		   $msg_code = 202;
+
+	         $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=addplan&msg='.$msg_code.'';	
+		     header("Location: ".$upd_url.""); //Обновляем страницу
+	         exit();
+		}
+	}
 }
 
 ?>
