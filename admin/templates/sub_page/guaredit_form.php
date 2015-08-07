@@ -1,6 +1,6 @@
 <?php
 
-$guar_array = get_guar($_GET['id']);
+$guar_array = guar_proc($options = array('method' => 'info', 'id' => $_GET['id']));
 
 if (isset($_POST['send']))
 {
@@ -8,7 +8,9 @@ if (isset($_POST['send']))
 	{
 		$content = $_POST['content'];
 
-		guar_proc($content,'upd',$_GET['id']); //Сохраняем гарантию
+		guar_proc($options = array('method' => 'edit',
+		'content' => $content,
+		'id' => $_GET['id'])); //Сохраняем гарантию
 	}
 }
 

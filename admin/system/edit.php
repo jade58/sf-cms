@@ -1,9 +1,6 @@
 <?php
 if (isset($_GET['page']))
 {
-	if ($_GET['type'] == 'page')
-	{
-
 	  switch ($_GET['items']) 
 	  {
 		case 'main':
@@ -19,7 +16,7 @@ if (isset($_GET['page']))
 		    $edit_page = 'templates/sub_page/guaredit_form.php';
 			break;
         case 'static':
-		    $edit_page = 'templates/sub_page/guaredit_form.php';
+		    $edit_page = 'templates/sub_page/staticform.php';
 			break;
 		
 		default:
@@ -27,8 +24,6 @@ if (isset($_GET['page']))
 			break;
 
 	  }
-
-    }
 
     if ($_GET['type'] == 'plan')
     {

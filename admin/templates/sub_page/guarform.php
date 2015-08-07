@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['method']))
 {
-  guar_proc('null',$_GET['method'],$_GET['id']);
+  guar_proc($options = array('method' => $_GET['method'], 'id' => $_GET['id']));
 }
 ?>
 <table class="table table-striped table-hover ">
@@ -13,8 +13,7 @@ if (isset($_GET['method']))
     </tr>
   </thead>
   <tbody>
-    <?php $guar_array = get_guar('all'); ?>
-    <?php foreach ($guar_array as $row) { ?>
+    <?php foreach (guar_proc($options = array('method' => 'list')) as $row) { ?>
     <tr class="info">
       <td><?php echo $row['id']; ?></td>
       <td><?php echo $row['guar']; ?></td>

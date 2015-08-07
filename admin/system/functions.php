@@ -97,9 +97,9 @@ function page_action($options)
 	   return $response_array[0];
     }
 
-    if ($method == 'del') //Delete
+    if ($options['method'] == 'del') //Delete
     {
-        $db_query = $db_connect -> query("DELETE FROM sf_page WHERE id='$id'");
+        $db_query = $db_connect -> query("DELETE FROM sf_page WHERE id='$options[id]'");
 
 	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=sitepage';	
 		header("Location: ".$upd_url.""); //Обновляем страницу
@@ -162,27 +162,25 @@ function msg_handler($msg_id)
 	}
 }
 
-function get_guar($id)
+function guar_proc($options)
 {
 	global $db_connect;
 
-    if ($id == 'all')
-    {
-	     $get_guar = $db_connect -> getAll("SELECT * FROM sf_guar");
+	if ($options['method'] == 'list')
+	{
+         $get_guar = $db_connect -> getAll("SELECT * FROM sf_guar");
          return $get_guar;
-    } else {
-	     $get_guar = $db_connect -> getAll("SELECT * FROM sf_guar WHERE id = '$id'");
+	}
+
+	if ($options['method'] == 'info')
+	{
+	     $get_guar = $db_connect -> getAll("SELECT * FROM sf_guar WHERE id = '$options[id]'");
 	     return $get_guar[0];
-    }
-}
+	}
 
-function guar_proc($content,$method,$id)
-{
-	global $db_connect;
-
-    if ($method == 'add')
+    if ($options['method'] == 'add')
     {
-    	$db_query = $db_connect -> query("INSERT INTO sf_guar (guar) VALUES ('$content')");
+    	$db_query = $db_connect -> query("INSERT INTO sf_guar (guar) VALUES ('$options[content]')");
 
 	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=edit&type=page&items=guar';	
 		header("Location: ".$upd_url.""); //Обновляем страницу
@@ -190,16 +188,16 @@ function guar_proc($content,$method,$id)
 
     } 
 
-    if ($method == 'upd') 
+    if ($options['method'] == 'edit') 
     {
-    	$db_query = $db_connect -> query("UPDATE sf_guar SET guar = '$content' WHERE id='$id'");
+    	$db_query = $db_connect -> query("UPDATE sf_guar SET guar = '$options[content]' WHERE id='$options[id]'");
 
 	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'].'';	
 		header("Location: ".$upd_url.""); //Обновляем страницу
 	    exit();
     }
 
-    if ($method == 'del')
+    if ($options['method'] == 'del')
     {
     	$db_query = $db_connect -> query("DELETE FROM sf_guar WHERE id='$id'");
 

@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['method']))
 {
-  page_action('null','null','null','del',$_GET['items']);
+  page_action($options = array('method' => 'del', 'id' => $_GET['items']));
 }
 ?>
 <div class="col-md-9">
