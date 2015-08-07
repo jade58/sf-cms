@@ -10,11 +10,11 @@ function get_users()
 }
 
 //Функция при помощи которой обновляется информация выводимая на главной странице сайта.
-function main_update($wtext,$des,$other)
+function main_update($options)
 {
 	global $msg_code,$db_connect; //db_array -- Массив с данными из таблицы sf_config
 
-		$update = $db_connect -> query("UPDATE bc_config SET value = CASE name WHEN 'description' THEN '$des' WHEN 'welcome_text' THEN '$wtext' ELSE 'site_name' END");
+		$update = $db_connect -> query("UPDATE bc_config SET value = CASE name WHEN 'description' THEN '$options[des]' WHEN 'welcome_text' THEN '$options[wtext]' ELSE 'site_name' END");
 
 	if ($update == 1)
 	{
@@ -31,32 +31,35 @@ function main_update($wtext,$des,$other)
 
 }
 
-function scr_update($page_name)
+function scr_update($options)
 {
 	global $db_connect,$g_url;
 
-	$update = $db_connect -> query("UPDATE bc_config SET value = '$page_name' WHERE name='scrtext'");
+	$update = $db_connect -> query("UPDATE bc_config SET value = '$options[page_name]' WHERE name='scrtext'");
 		
 		header("Location: ".$g_url.""); //Обновляем страницу
 		exit();
 }
 
 //Функция для работы со страницами сайта
-function page_action($name,$url,$content,$method,$id)
+//function page_action($name,$url,$content,$method,$id)
+function page_action($options)
 {
 	global $db_connect;
 
-	if ($method == 'create')
+	if ($options['method'] == 'create')
 	{     
-		$chek_page = $db_connect->getAll("SELECT id FROM sf_page WHERE url='$url'");
+		$chek_page = $db_connect->getAll("SELECT id FROM sf_page WHERE url='$options[page_url]'");
 		print_r($chek_page);
 
 		if (count($chek_page[0]) == 0)
 		{
-			$db_query = $db_connect -> query("INSERT INTO sf_page (name, content, creator, datecreate, url) VALUES ('$name','$content','admin','21.01.15','$url')");
+			$date = date('Y.m.d'); //Текущая дата.
+
+			$db_query = $db_connect -> query("INSERT INTO sf_page (name, content, creator, datecreate, url) VALUES ('$options[page_name]','$options[content]','admin','$date','$options[page_url]')");
 			if ($db_query > 0)
 			{
-				$get_id = $db_connect ->getAll("SELECT id FROM sf_page WHERE url='$url'");
+				$get_id = $db_connect ->getAll("SELECT id FROM sf_page WHERE url='$options[page_url]'");
 
 				foreach ($get_id as $row) 
 				{
@@ -72,7 +75,7 @@ function page_action($name,$url,$content,$method,$id)
 
 	    } else {
 
-	      	$msg_code = 100; //Такая страница уже есть!
+	      	$msg_code = 100;
 
 		    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=addpage&msg='.$msg_code.'';
 	        
@@ -82,15 +85,15 @@ function page_action($name,$url,$content,$method,$id)
 
 }
 
-    if ($method == 'list') //Get page list (array)
+    if ($options['method'] == 'list') //Get page list (array)
     {
 	   $response_array = $db_connect->getAll("SELECT name,id,creator,datecreate,url FROM sf_page");
 	   return $response_array;
     }
 
-    if ($method == 'info') //GET Info (array)
+    if ($options['method'] == 'info') //GET Info (array)
     {
-	   $response_array = $db_connect->getAll("SELECT name,id,creator,datecreate,url,content FROM sf_page WHERE id='$id'");
+	   $response_array = $db_connect->getAll("SELECT * FROM sf_page WHERE id='$options[id]'");
 	   return $response_array[0];
     }
 
@@ -103,9 +106,9 @@ function page_action($name,$url,$content,$method,$id)
 	    exit();
     }
 
-    if ($method == 'edit')
+    if ($options['method'] == 'edit')
     {
-    	$db_query = $db_connect -> query("UPDATE sf_page SET name = '$name',content = '$content',url = '$url' WHERE id='$id'");
+    	$db_query = $db_connect -> query("UPDATE sf_page SET name = '$options[name]',content = '$options[content]',url = '$options[url]' WHERE id='$options[id]'");
 
         if ($db_query == 1)
         {
@@ -267,6 +270,37 @@ function price_action($method, $name, $price, $number, $id)
 	         exit();
 		}
 	}
+
+	if ($method == 'del')
+	{
+    	$db_query = $db_connect -> query("DELETE FROM sf_price WHERE id='$id'");
+
+	    $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=commerce';	
+		header("Location: ".$upd_url.""); //Обновляем страницу
+	    exit();
+	}
+}
+
+function scr_action($options)
+{
+    global $db_connect;
+
+    if ($options['method'] == 'get')
+    {
+       $img_array = $db_connect -> getAll("SELECT * FROM sf_scr");
+
+       return $img_array;
+    }
+
+    if ($options['method'] == 'add')
+    {
+    	$db_query = $db_connect -> query("INSERT INTO sf_scr (img_url, bet_date, description) VALUES ('$options[img_url]','$options[date_bet]','$options[description]')");
+         
+         $upd_url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?page=manager&items=scr';	
+		 header("Location: ".$upd_url.""); //Обновляем страницу
+	     exit();
+    }
+
 }
 
 ?>

@@ -1,3 +1,9 @@
+<?php
+if (isset($_GET['method']))
+{
+  price_action('del', 'null', 'null', 'null', $_GET['items']);
+}
+?>
 <div class="col-md-9">
     <h3><p>Управление комерцией </p></h3>
   <div class="well">
@@ -23,7 +29,7 @@
         <tr class="info">
           <td><?php echo $row['id']; ?></td>
           <td><?php echo $row['name']; ?></td>
-          <td><a href="index.php?page=edit&type=plan&items=<?php echo $row['id']; ?>">Редактировать / Удалить</td>
+          <td><a href="index.php?page=edit&type=plan&items=<?php echo $row['id']; ?>">Редактировать</a> / <a href="index.php?page=commerce&method=del&items=<?php echo $row['id']; ?>">Удалить</a></td>
         </tr>
         <?php } ?>
       </tbody>

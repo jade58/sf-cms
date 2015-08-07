@@ -96,4 +96,13 @@ function get_password($number)
 
   }
 
+  function get_scr()
+  {
+    global $db_connect;
+
+    $img_array = $db_connect -> getAll("SELECT * FROM sf_scr");
+
+    return $img_array;
+  }
+
 ?>

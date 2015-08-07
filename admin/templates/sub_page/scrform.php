@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['send']))
 {
-	scr_update($_POST['page_name']);
+	scr_update($options = array('page_name' => $_POST['page_name']));
 }
 ?>
 <form class="form-horizontal" method="post">

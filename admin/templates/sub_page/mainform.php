@@ -4,7 +4,7 @@ if (isset($_POST['send']))
 	$wtext = $_POST['welcome_text'];
 	$des = $_POST['descriptions'];
 
-	main_update($wtext,$des,1);
+	main_update($options = array('wtext' => $wtext, 'des' => $des));
 }
 
 ?>

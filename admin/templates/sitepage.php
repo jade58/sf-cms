@@ -32,7 +32,7 @@ if (isset($_GET['method']))
           <td>Главная</td>
           <td>root</td>
           <td>/</td>
-          <td>00.00.00</td>
+          <td>/</td>
           <td><a href="index.php?page=edit&type=page&items=main">Редактировать</td>
         </tr>
         <tr class="info">
@@ -40,7 +40,7 @@ if (isset($_GET['method']))
           <td>Скриншоты</td>
           <td>root</td>
           <td>/</td>
-          <td>00.00.00</td>
+          <td>/</td>
           <td><a href="index.php?page=edit&type=page&items=scr">Редактировать</td>
         </tr>
         <tr class="info">
@@ -48,11 +48,10 @@ if (isset($_GET['method']))
           <td>Гарантии</td>
           <td>root</td>
           <td>/</td>
-          <td>00.00.00</td>
+          <td>/</td>
           <td><a href="index.php?page=edit&type=page&items=guar">Редактировать</td>
         </tr>
-        <?php $pages_list = page_action('null','null','null','list','null'); ?>
-        <?php foreach ($pages_list as $row) { ?>
+        <?php foreach (page_action($options = array('method' => 'list')) as $row) { ?>
         <tr class="success">
           <td><?php echo $row['id']; ?></td>
           <td><?php echo $row['name']; ?></td>

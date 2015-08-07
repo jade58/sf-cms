@@ -34,5 +34,30 @@ if (isset($_GET['page']))
     {
     	$edit_page = 'templates/sub_page/planform.php';
     }
+
+    if ($_GET['page'] == 'manager')
+    {
+    	if (isset($_GET['items']))
+    	{
+    	  switch ($_GET['items']) 
+    	  {
+
+		  case 'scr':
+			  $edit_page = 'templates/sub_page/scredit.php';
+			  break;
+		
+		  default:
+			  $edit_page = 'templates/sub_page/404.html';
+			  break;
+	      }
+
+	    } else 
+
+	    {
+	    	$edit_page = 'templates/sub_page/404.html';
+	    }
+
+    }
 }
+
 ?>

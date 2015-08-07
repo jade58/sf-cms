@@ -7,7 +7,12 @@ if (isset($_POST['send']))
 		$page_url = $_POST['url'];
 		$content = $_POST['content'];
 
-		page_action($page_name,$page_url,$content,'create','null'); //Создаём страницу
+		//page_action($page_name,$page_url,$content,'create','null'); //Создаём страницу
+		page_action($options = array(
+		'page_name' => $page_name,
+		'page_url' => $page_url,
+		'content' => $content,
+		'method' => 'create' )); //Создаём страницу
 	}
 }
 ?>

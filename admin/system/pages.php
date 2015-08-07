@@ -12,7 +12,7 @@ if (isset($_GET['page']))
 			$page = 'templates/commerce.php';
 			break;
 		case 'materials':
-			//include 'templates/materials.php';
+			$page = 'templates/materials.php';
 			break;
 		case 'edit':
 			$page = 'templates/editpage.php';
@@ -25,6 +25,12 @@ if (isset($_GET['page']))
 			break;
 		case 'addguar':
 			$page = 'templates/addguar.php';
+			break;
+		case 'manager':
+			$page = 'templates/manager.php';
+			break;
+        case 'addscr':
+			$page = 'templates/addscr.php';
 			break;
 		
 		default:

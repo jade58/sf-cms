@@ -1,9 +1,22 @@
 <?php
-$page_info = page_action('null','null','null','info',$_GET['items']);
+
+$page_info = page_action($options = array(
+'id' => $_GET['items'],
+'method' => 'info' ));
+
 if (isset($_POST['send']))
 {
-	page_action($_POST['page_name'],$_POST['url'],$_POST['content'],'edit',$_GET['items']);
+	$name = mysql_escape_string(htmlspecialchars(strip_tags($_POST['page_name'])));
+	$content = mysql_escape_string(htmlspecialchars(strip_tags($_POST['content'])));
+	$url = mysql_escape_string(htmlspecialchars(strip_tags($_POST['url'])));
+
+	page_action($options = array('name' => $name,
+	'content' => $content,
+	'url' => $url,
+	'method' => 'edit',
+	'id' => $page_info['id'] ));
 }
+
 ?>
 <form class="form-horizontal" method="post">
 	<fieldset>
